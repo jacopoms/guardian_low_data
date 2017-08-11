@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}
+
+    %title Guardian Low Data
+
+    :css
+      body {
+        padding: 32px 16px;
+      }
+
+      ul.articles {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      article img {
+        width: 100%;
+        height: auto;
+      }
+
+
+  %body
+    %header
+      %h1 Guardian Low Data
+    = yield

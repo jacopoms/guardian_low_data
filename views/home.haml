@@ -1,0 +1,11 @@
+%section.container
+  %ul.articles
+    - @results.each do |article|
+      %li
+        %h3.article-title
+          = article.title
+        %div.article-body
+          %p
+            = article.fields[:trailText]
+          %a{href: "article/#{article.id}" }
+            Read more
