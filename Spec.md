@@ -2,7 +2,7 @@
 
 Guardian API Docs: http://open-platform.theguardian.com/documentation/
 
-Guardian API Key: 7a4779b7-6e6e-490c-bf52-3dd4f706b892
+Guardian API Key: 
 
 ## Actors
 
