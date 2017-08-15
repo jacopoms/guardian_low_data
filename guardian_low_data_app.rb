@@ -14,8 +14,7 @@ class GuardianLowDataApp < Sinatra::Base
   GuardianContent::Base.new
 
   get '/' do
-    @results = GuardianContent::Content.search('', order_by: 'newest', select: { fields: :all } )
-
+    @results = GuardianContent::Content.search(nil, order: 'newest', select: { fields: :all } )
     haml :home
   end
 

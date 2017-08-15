@@ -4,7 +4,11 @@
       %li
         %h3.article-title
           = article.title
-        %div.article-body
+        .article-date
+
+        .article-body
+          %p
+            = DateTime.parse(article.publication_date.to_s)
           %p
             = article.fields[:trailText]
           %a{href: "article/#{article.id}" }
