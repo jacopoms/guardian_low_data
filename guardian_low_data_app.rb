@@ -1,7 +1,8 @@
-GUARDIAN_CONTENT_API_KEY = ENV['GUARDIAN_CONTENT_API_KEY']
 
 class GuardianLowDataApp < Sinatra::Base
 
+  GUARDIAN_CONTENT_API_KEY = ENV['GUARDIAN_CONTENT_API_KEY']
+ 
   set :haml, :format => :html5
 
   configure :development do
@@ -17,9 +18,7 @@ class GuardianLowDataApp < Sinatra::Base
   end
 
   get '/article/*' do |id|
-
     @article = GuardianContent::Content.find_by_id(id)
-
     haml :article
   end
 end
