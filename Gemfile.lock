@@ -35,6 +35,8 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     puma (3.9.1)
+    puma-heroku (1.0.0)
+      puma (~> 3.0)
     rack (2.0.3)
     rack-protection (2.0.0)
       rack
@@ -61,9 +63,13 @@ DEPENDENCIES
   haml
   pry-byebug
   puma
+  puma-heroku
   rack-test
   rake
   sinatra
+
+RUBY VERSION
+   ruby 2.4.1p111
 
 BUNDLED WITH
    1.15.3
