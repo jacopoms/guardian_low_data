@@ -6,9 +6,13 @@ class GuardianLowDataApp < Sinatra::Base
     use BetterErrors::Middleware
     BetterErrors.application_root = File.expand_path('..', __FILE__)
   end
-  
+
   before do
-    GuardianContent::Base.new(ENV['GUARDIAN_CONTENT_API_KEY'])
+    if defined?(GUARDIAN_CONTENT_API_KEY)
+      GuardianContent.new(GUARDIAN_CONTENT_API_KEY)
+    else
+      GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
+    end
   end
 
   get '/' do
