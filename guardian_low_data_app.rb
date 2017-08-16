@@ -6,15 +6,13 @@ class GuardianLowDataApp < Sinatra::Base
 
   configure :development do
     use BetterErrors::Middleware
-    # you need to set the application root in order to abbreviate filenames
-    # within the application:
     BetterErrors.application_root = File.expand_path('..', __FILE__)
   end
 
   GuardianContent::Base.new
 
   get '/' do
-    @results = GuardianContent::Content.search(nil, order: 'newest', select: { fields: :all } )
+    @results = GuardianContent::Content.search("Britain", order: 'newest', select: { fields: :all } )
     haml :home
   end
 
