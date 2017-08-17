@@ -8,8 +8,9 @@
 
         .article-body
           %p
-            = DateTime.parse(article.publication_date.to_s)
-          %p
             = article.fields[:trailText]
-          %a{href: "article/#{article.id}" }
-            Read more
+          %p.publication_date
+            Published at
+            = DateTime.parse(article.publication_date.to_s).strftime("%d-%m-%Y") \
+            %a{href: "article/#{article.id}" }
+              Read more
