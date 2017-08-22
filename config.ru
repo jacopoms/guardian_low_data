@@ -5,6 +5,6 @@ require 'better_errors'
 
 Bundler.require
 
-require './guardian_low_data_app'
+require './app/guardian_low_data_app'
 
 GuardianLowDataApp.run!

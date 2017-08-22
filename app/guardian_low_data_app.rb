@@ -1,9 +1,11 @@
+require 'sinatra'
+
 class GuardianLowDataApp < Sinatra::Base
 
   set :haml, :format => :html5
   set :logging, true
   set :server, %[puma]
-  
+
   configure :development do
     set :bind, '0.0.0.0'
     set :port, 3000

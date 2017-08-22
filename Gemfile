@@ -16,4 +16,5 @@ gem 'binding_of_caller'
 group :test do
   gem 'rake'
   gem 'rack-test'
+  gem 'test-unit'
 end
