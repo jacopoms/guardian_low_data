@@ -1,10 +1,7 @@
-ENV['RACK_ENV'] = 'test'
-require 'test/unit'
-require 'rack/test'
-require 'guardian-content'
+require 'test/test_helper'
 require 'app/guardian_low_data_app'
 
-class GuardianLowDataAppTest < Test::Unit::TestCase
+class TestGuardianLowDataApp < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
