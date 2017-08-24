@@ -12,5 +12,14 @@
           %p.publication_date
             Published at
             = DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M") \
-            %a{href: "article/#{article.id}" }
+            %a{href: "/article/#{article.id}" }
               Read more
+  .pagination
+    -# - if @page >= 10
+    -#   %a{href: "/page/#{@page-1}"}
+    -#     &laquo;
+    - pagination(@page, @results.size).each do |page|
+      %a{href: "/page/#{page}",class: ("active" if (@page%10) == page) }
+        = "#{page}"
+    -# %a{href: "/page/#{@page+10}"}
+    -#   &raquo;

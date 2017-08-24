@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/rob-murray/contentapi-ruby
-  revision: 4a9db4fd9a392b9d5ad7368dd2dc13116e7b7543
+  remote: https://github.com/Jackopo/contentapi-ruby
+  revision: 14f4edb548f3d63edfc243727f3e4291e5a62edc
   specs:
     guardian-content (0.0.1)
       httparty (>= 0.5.2)
@@ -54,6 +54,7 @@ GEM
     test-unit (3.2.5)
       power_assert
     tilt (2.0.8)
+    will_paginate (3.1.6)
 
 PLATFORMS
   ruby
@@ -71,9 +72,10 @@ DEPENDENCIES
   rake
   sinatra
   test-unit
+  will_paginate (~> 3.1.1)
 
 RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.3
+   1.15.4
