@@ -1,7 +1,10 @@
 require 'sinatra'
+require "will_paginate/view_helpers/sinatra"
+require 'will_paginate/array'
 require_relative 'helpers'
 
 class GuardianLowDataApp < Sinatra::Base
+  register WillPaginate::Sinatra
 
   set :haml, :format => :html5
   set :logging, true
@@ -25,14 +28,14 @@ class GuardianLowDataApp < Sinatra::Base
   end
 
   get '/' do
-    @results = GuardianContent::Content.search(nil, order: 'newest', select: { fields: :all } )
     @page = 1
+    @results = GuardianContent::Content.search(nil, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     haml :home
   end
 
   get '/page/:page' do
     @page = params[:page].to_i
-    @results = GuardianContent::Content.search(nil, order: 'newest', page: @page, select: { fields: :all } )
+    @results = GuardianContent::Content.search(nil, order: 'newest', page: @page, limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     haml :home
   end
 

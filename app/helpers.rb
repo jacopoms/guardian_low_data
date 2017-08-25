@@ -1,4 +1,7 @@
+require_relative 'custom_link_renderer'
+
 module ApplicationHelper
+
 
   def paginator(global_page, paginator_page)
     return paginator_page if global_page < 10
