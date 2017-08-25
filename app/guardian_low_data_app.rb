@@ -9,6 +9,7 @@ class GuardianLowDataApp < Sinatra::Base
   set :haml, :format => :html5
   set :logging, true
   set :server, %[puma]
+  enable :sessions
 
   configure :development do
     set :bind, '0.0.0.0'
@@ -30,16 +31,19 @@ class GuardianLowDataApp < Sinatra::Base
   get '/' do
     @page = 1
     @results = GuardianContent::Content.search(nil, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    session[:request_path] = path_info
     haml :home
   end
 
   get '/page/:page' do
     @page = params[:page].to_i
     @results = GuardianContent::Content.search(nil, order: 'newest', page: @page, limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    session[:request_path] = path_info
     haml :home
   end
 
   get '/article/*' do |id|
+    @back_path = session[:request_path]
     @article = GuardianContent::Content.find_by_id(id)
     haml :article
   end
