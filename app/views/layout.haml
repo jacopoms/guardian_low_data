@@ -26,6 +26,11 @@
         height: auto;
       }
 
+      .home {
+        color: black;
+        text-decoration: none;
+      }
+
       .publication_date,
       .back-link {
         font-size: 75%;
@@ -69,6 +74,8 @@
 
   %body
     %header
-      %h1 Guardian Low Data
+      %h1
+        %a.home{href: '/'}
+          Guardian Low Data
 
     = yield
