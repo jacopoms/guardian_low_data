@@ -47,7 +47,6 @@ class GuardianLowDataApp < Sinatra::Base
 
   get '/article/*' do |id|
     @back_path = session[:request_path]
-    session[:query] = nil
     @article = GuardianContent::Content.find_by_id(id)
     haml :article
   end
