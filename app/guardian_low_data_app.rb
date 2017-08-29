@@ -40,7 +40,7 @@ class GuardianLowDataApp < Sinatra::Base
   get '/page/:page' do
     @page = params[:page].to_i
     @query = session[:query] ? session[:query] : nil
-    @results = GuardianContent::Content.search(@query, order: 'newest', page: @page, limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    @results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     session[:request_path] = path_info
     haml :home
   end
@@ -57,7 +57,6 @@ class GuardianLowDataApp < Sinatra::Base
     session[:query] = params[:q].to_s
     @query = session[:query]
     @results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
-    session[:request_path] = path_info
     haml :home
   end
 end
