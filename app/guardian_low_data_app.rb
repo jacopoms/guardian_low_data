@@ -21,11 +21,7 @@ class GuardianLowDataApp < Sinatra::Base
   helpers ApplicationHelper
 
   before do
-    if defined?(GUARDIAN_CONTENT_API_KEY)
-      GuardianContent.new(GUARDIAN_CONTENT_API_KEY)
-    else
-      GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
-    end
+    GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
   end
 
   get '/' do
