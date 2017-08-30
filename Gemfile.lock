@@ -8,6 +8,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     better_errors (2.3.0)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -16,12 +18,15 @@ GEM
       debug_inspector (>= 0.0.1)
     byebug (9.0.6)
     coderay (1.1.1)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
     debug_inspector (0.0.3)
     dotenv (2.2.1)
     erubi (1.6.1)
     haml (5.0.2)
       temple (>= 0.8.0)
       tilt
+    hashdiff (0.3.6)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
     method_source (0.8.2)
@@ -35,6 +40,7 @@ GEM
     pry-byebug (3.4.2)
       byebug (~> 9.0)
       pry (~> 0.10)
+    public_suffix (3.0.0)
     puma (3.9.1)
     puma-heroku (1.0.0)
       puma (~> 3.0)
@@ -44,6 +50,7 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (12.0.0)
+    safe_yaml (1.0.4)
     sinatra (2.0.0)
       mustermann (~> 1.0)
       rack (~> 2.0)
@@ -54,6 +61,11 @@ GEM
     test-unit (3.2.5)
       power_assert
     tilt (2.0.8)
+    vcr (3.0.3)
+    webmock (3.0.1)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
     will_paginate (3.1.6)
 
 PLATFORMS
@@ -72,6 +84,8 @@ DEPENDENCIES
   rake
   sinatra
   test-unit
+  vcr
+  webmock
   will_paginate (~> 3.1.1)
 
 RUBY VERSION
