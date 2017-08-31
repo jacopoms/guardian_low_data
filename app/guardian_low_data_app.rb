@@ -29,6 +29,7 @@ class GuardianLowDataApp < Sinatra::Base
     session[:query] = nil
     @query = session[:query]
     @results = GuardianContent::Content.search(nil, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    return empty_response if @results.empty?
     session[:request_path] = path_info
     haml :home
   end
@@ -37,6 +38,7 @@ class GuardianLowDataApp < Sinatra::Base
     @page = params[:page].to_i
     @query = session[:query] ? session[:query] : nil
     @results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    return empty_response if @results.empty?
     session[:request_path] = path_info
     haml :home
   end
@@ -52,6 +54,13 @@ class GuardianLowDataApp < Sinatra::Base
     session[:query] = params[:q].to_s
     @query = session[:query]
     @results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    haml :home
+  end
+
+  private
+
+  def empty_response
+    @results = [OpenStruct.new(:title => "No Articles")]
     haml :home
   end
 end

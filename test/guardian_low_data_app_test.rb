@@ -21,4 +21,19 @@ class TestGuardianLowDataApp < Test::Unit::TestCase
       assert_equal last_response.status, 200
     end
   end
+
+  def test_lastpage
+    VCR.use_cassette("test_lastpage") do
+      get '/page/20'
+      assert last_response.ok?
+    end
+  end
+
+  def test_after_lastpage
+    VCR.use_cassette("test_after_lastpage") do
+      get '/page/21'
+      assert last_response.ok?
+      assert last_response.body.include?('No Articles')
+    end
+  end
 end

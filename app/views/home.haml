@@ -7,13 +7,15 @@
         %h3.article-title
           = article.title
         .article-date
+        - if article.respond_to?(:fields)
+          .article-body
+            %p
+              = article.fields[:trailText]
+            %p.publication_date
+              Published at
+              = DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M") \
+              %a{href: "/article/#{article.id}" }
+                Read more
 
-        .article-body
-          %p
-            = article.fields[:trailText]
-          %p.publication_date
-            Published at
-            = DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M") \
-            %a{href: "/article/#{article.id}" }
-              Read more
-  = will_paginate @results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
+  - if @results.size > 10
+    = will_paginate @results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
