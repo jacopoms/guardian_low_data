@@ -28,19 +28,17 @@ class GuardianLowDataApp < Sinatra::Base
     @page = 1
     session[:query] = nil
     @query = session[:query]
-    @results = GuardianContent::Content.search(nil, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
-    return empty_response if @results.empty?
+    results = GuardianContent::Content.search(nil, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     session[:request_path] = path_info
-    haml :home
+    haml :home, locals: {:results => prepare_articles(results)}
   end
 
   get '/page/:page' do
     @page = params[:page].to_i
     @query = session[:query] ? session[:query] : nil
-    @results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
-    return empty_response if @results.empty?
+    results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     session[:request_path] = path_info
-    haml :home
+    haml :home, locals: {:results => prepare_articles(results)}
   end
 
   get '/article/*' do |id|
@@ -53,14 +51,14 @@ class GuardianLowDataApp < Sinatra::Base
     @page = 1
     session[:query] = params[:q].to_s
     @query = session[:query]
-    @results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
-    haml :home
+    results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    haml :home, locals: {:results => prepare_articles(results)}
   end
 
   private
 
-  def empty_response
-    @results = [OpenStruct.new(:title => "No Articles")]
-    haml :home
+  def prepare_articles(results)
+    results = [OpenStruct.new(:title => "No Articles")] if results.empty?
+    results
   end
 end

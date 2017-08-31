@@ -2,7 +2,7 @@
 
 %section.container
   %ul.articles
-    - @results.each do |article|
+    - results.each do |article|
       %li
         %h3.article-title
           = article.title
@@ -16,6 +16,5 @@
               = DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M") \
               %a{href: "/article/#{article.id}" }
                 Read more
-
-  - if @results.size > 10
-    = will_paginate @results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
+  - unless results.first.is_a?(OpenStruct)
+    = will_paginate results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
