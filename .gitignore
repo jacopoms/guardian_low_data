@@ -1,1 +1,8 @@
+## MAC OS
+.DS_Store
+
+## ignore env file
 .env
+
+##ignore everything under features/vcr_cassettes
+fixtures/vcr_cassettes/*.yml
