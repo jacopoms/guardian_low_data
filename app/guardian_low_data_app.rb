@@ -10,6 +10,7 @@ class GuardianLowDataApp < Sinatra::Base
   set :logging, true
   set :server, %[puma]
   enable :sessions
+  helpers Sinatra::GuardianLowDataApp::Helpers
 
   configure :development do
     set :bind, '0.0.0.0'
@@ -18,7 +19,6 @@ class GuardianLowDataApp < Sinatra::Base
     BetterErrors.application_root = File.expand_path('..', __FILE__)
   end
 
-  helpers ApplicationHelper
 
   before do
     GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
