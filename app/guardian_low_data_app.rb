@@ -1,7 +1,7 @@
 require 'sinatra'
-require "will_paginate/view_helpers/sinatra"
-require 'will_paginate/array'
 require 'better_errors'
+require 'will_paginate/view_helpers/sinatra'
+require 'will_paginate/array'
 require_relative 'helpers'
 
 class GuardianLowDataApp < Sinatra::Base

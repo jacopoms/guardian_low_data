@@ -36,4 +36,15 @@ class TestGuardianLowDataApp < Test::Unit::TestCase
       assert last_response.body.include?('No Articles')
     end
   end
+
+  def test_error
+    VCR.use_cassette("test_error") do
+      begin
+        get '/page/-1'
+      rescue Exception => e
+        assert e.is_a?(StandardError)
+        assert e.is_a?(RangeError)
+      end
+    end
+  end
 end
