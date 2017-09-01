@@ -11,12 +11,8 @@ gem 'guardian-content', :github => 'Jackopo/contentapi-ruby'
 gem 'haml'
 gem 'pry-byebug'
 gem 'will_paginate', '~> 3.1.1'
-
-
-group :development, :test do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-end
+gem 'better_errors'
+gem 'binding_of_caller'
 
 group :test do
   gem 'rake'
