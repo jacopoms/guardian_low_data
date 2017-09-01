@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler'
 require 'dotenv/load'
-require 'better_errors'
 
 Bundler.require
 

@@ -1,5 +1,5 @@
-require 'test/test_helper'
-require 'app/guardian_low_data_app'
+require_relative 'test_helper'
+require_relative '../app/guardian_low_data_app'
 
 class TestGuardianLowDataApp < Test::Unit::TestCase
   include Rack::Test::Methods

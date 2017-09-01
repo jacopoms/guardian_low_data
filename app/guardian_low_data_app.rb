@@ -1,6 +1,7 @@
 require 'sinatra'
 require "will_paginate/view_helpers/sinatra"
 require 'will_paginate/array'
+require 'better_errors'
 require_relative 'helpers'
 
 class GuardianLowDataApp < Sinatra::Base
@@ -18,7 +19,6 @@ class GuardianLowDataApp < Sinatra::Base
     use BetterErrors::Middleware
     BetterErrors.application_root = File.expand_path('..', __FILE__)
   end
-
 
   before do
     GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
