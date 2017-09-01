@@ -4,6 +4,6 @@ require 'dotenv/load'
 
 Bundler.require
 
-require './app/guardian_low_data_app'
+require_relative 'app/guardian_low_data_app'
 
 GuardianLowDataApp.run!
