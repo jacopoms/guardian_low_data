@@ -55,6 +55,13 @@ class GuardianLowDataApp < Sinatra::Base
     haml :home, locals: {:results => prepare_articles(results)}
   end
 
+  configure :production, :test do
+    set :show_exceptions, false
+    error do
+      "Houston! We have a problem!!!"
+    end
+  end
+
   private
 
   def prepare_articles(results)
