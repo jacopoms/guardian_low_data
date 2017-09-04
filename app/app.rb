@@ -53,7 +53,6 @@ class GuardianLowDataApp < Sinatra::Base
     @page = 1
     session[:query] = nil
     @query = session[:query]
-    fetch_sections
     set_path
     render_articles
   end
@@ -61,7 +60,6 @@ class GuardianLowDataApp < Sinatra::Base
   get '/page/:page' do
     @page = params[:page].to_i
     @query = session[:query] ? session[:query] : nil
-    fetch_sections
     set_path
     render_articles
   end
