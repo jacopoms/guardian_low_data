@@ -12,13 +12,19 @@ class TestGuardianLowDataApp < Minitest::Test
     VCR.use_cassette("test_homepage") do
       get '/'
       assert last_response.ok?
+      assert_equal last_response.status, 200
+      assert last_response.body.include?("class='article-title'")
+
     end
   end
 
   def test_secondpage
     VCR.use_cassette("test_secondpage") do
       get '/page/2'
+      assert last_response.ok?
       assert_equal last_response.status, 200
+      assert last_response.body.include?("class='article-title'")
+
     end
   end
 
@@ -26,6 +32,8 @@ class TestGuardianLowDataApp < Minitest::Test
     VCR.use_cassette("test_lastpage") do
       get '/page/20'
       assert last_response.ok?
+      assert_equal last_response.status, 200
+      assert last_response.body.include?("class='article-title'")
     end
   end
 
