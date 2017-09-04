@@ -1,4 +1,5 @@
 %section.search
   %form{method: 'POST', action: '/search'}
-    %input{type: 'text', name: 'q', value: @query}
-    %input{type: 'submit'}
+    %fieldset
+      %input{type: 'search', name: 'q', value: @query}
+      %input{type: 'submit', value: 'Search'}

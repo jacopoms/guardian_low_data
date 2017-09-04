@@ -1,5 +1,5 @@
 # rakefile
-require_relative './app/guardian_low_data_app'
+require_relative './app/app'
 require 'rake'
 require 'rake/testtask'
 

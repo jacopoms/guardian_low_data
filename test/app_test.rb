@@ -1,5 +1,5 @@
 require_relative 'test_helper'
-require_relative '../app/guardian_low_data_app'
+require_relative '../app/app'
 
 class TestGuardianLowDataApp < Minitest::Test
   include Rack::Test::Methods
@@ -61,6 +61,14 @@ class TestGuardianLowDataApp < Minitest::Test
       post '/search', :q => "Firenze"
       assert last_response.ok?
       assert last_response.body.include?('Firenze')
+    end
+  end
+
+  def test_sections
+    VCR.use_cassette 'test_sections' do
+      get '/'
+      assert last_response.ok?
+      assert last_response.body.include?('section_name')
     end
   end
 end

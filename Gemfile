@@ -13,6 +13,8 @@ gem 'pry-byebug'
 gem 'will_paginate', '~> 3.1.1'
 gem 'better_errors'
 gem 'binding_of_caller'
+gem 'sprockets'
+gem 'sass'
 
 group :test do
   gem 'rake'
