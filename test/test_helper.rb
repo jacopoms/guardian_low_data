@@ -1,11 +1,11 @@
 ENV['RACK_ENV'] = 'test'
-require 'test/unit'
+require 'minitest/autorun'
 require 'rack/test'
 require 'dotenv/load'
 require 'httparty'
 require 'pry'
 require 'guardian-content'
-require 'webmock/test_unit'
+require 'webmock/minitest'
 require 'vcr'
 
 VCR.configure do |config|
