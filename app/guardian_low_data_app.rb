@@ -20,29 +20,39 @@ class GuardianLowDataApp < Sinatra::Base
     BetterErrors.application_root = File.expand_path('..', __FILE__)
   end
 
+  configure :production, :test do
+    set :show_exceptions, false
+    error do
+      "Houston! We have a problem!!!"
+    end
+  end
+
   before do
     GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
+  end
+
+  def render_articles
+    results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+    session[:request_path] = path_info
+    haml :home, locals: {:results => prepare_articles(results)}
   end
 
   get '/' do
     @page = 1
     session[:query] = nil
     @query = session[:query]
-    results = GuardianContent::Content.search(nil, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
-    session[:request_path] = path_info
-    haml :home, locals: {:results => prepare_articles(results)}
+    render_articles
   end
 
   get '/page/:page' do
     @page = params[:page].to_i
     @query = session[:query] ? session[:query] : nil
-    results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
-    session[:request_path] = path_info
-    haml :home, locals: {:results => prepare_articles(results)}
+    render_articles
   end
 
   get '/article/*' do |id|
     @back_path = session[:request_path]
+    @query = session[:query] ? session[:query] : nil    
     @article = GuardianContent::Content.find_by_id(id)
     haml :article
   end
@@ -53,13 +63,6 @@ class GuardianLowDataApp < Sinatra::Base
     @query = session[:query]
     results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     haml :home, locals: {:results => prepare_articles(results)}
-  end
-
-  configure :production, :test do
-    set :show_exceptions, false
-    error do
-      "Houston! We have a problem!!!"
-    end
   end
 
   private
