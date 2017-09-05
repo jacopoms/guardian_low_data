@@ -78,8 +78,6 @@ class GuardianLowDataApp < Sinatra::Base
     render_articles
   end
 
-  private
-
   def prepare_articles(results)
     results = [OpenStruct.new(:title => "No Articles")] if results.empty?
     results

@@ -4,6 +4,7 @@ require 'dotenv/load'
 require 'rack/test'
 require 'rspec'
 require 'guardian-content'
+require 'pry'
 require_relative '../app/app'
 require_relative '../test/vcr_setup'
 
