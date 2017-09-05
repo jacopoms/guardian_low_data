@@ -1,10 +1,20 @@
 # rakefile
-require_relative './app/app'
 require 'rake'
 require 'rake/testtask'
+require 'rspec/core/rake_task'
+require_relative './app/app'
 
-Rake::TestTask.new :tests do |task|
+Rake::TestTask.new :test do |task|
   task.pattern = "test/*_test.rb"
 end
 
-task :default => ['tests']
+RSpec::Core::RakeTask.new :spec do |task|
+  task.pattern = Dir.glob('spec/**/*_spec.rb')
+  task.rspec_opts = '--format documentation'
+end
+
+task :default => ['test','spec']
+
+task :minitest => :test
+
+task :rspec  => :spec

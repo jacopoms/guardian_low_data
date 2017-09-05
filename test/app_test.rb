@@ -14,7 +14,6 @@ class TestGuardianLowDataApp < Minitest::Test
       assert last_response.ok?
       assert_equal last_response.status, 200
       assert last_response.body.include?("class='article-title'")
-
     end
   end
 
@@ -24,7 +23,6 @@ class TestGuardianLowDataApp < Minitest::Test
       assert last_response.ok?
       assert_equal last_response.status, 200
       assert last_response.body.include?("class='article-title'")
-
     end
   end
 

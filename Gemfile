@@ -20,6 +20,7 @@ group :test do
   gem 'rake'
   gem 'rack-test'
   gem 'minitest'
+  gem 'rspec'
   gem 'webmock'
   gem 'vcr'
 end
