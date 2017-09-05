@@ -64,11 +64,11 @@ class TestGuardianLowDataApp < Minitest::Test
     end
   end
 
-  def test_sections
-    VCR.use_cassette 'test_sections' do
-      get '/'
-      assert last_response.ok?
-      assert last_response.body.include?('section_name')
-    end
-  end
+  # def test_sections
+  #   VCR.use_cassette 'test_sections' do
+  #     get '/'
+  #     assert last_response.ok?
+  #     assert last_response.body.include?('section_name')
+  #   end
+  # end
 end
