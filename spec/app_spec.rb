@@ -11,11 +11,13 @@ describe GuardianLowDataApp do
       end
     end
   end
-  
+
   describe '#prepare_articles' do
+
+    let(:test_subject) { app.new! }
+
     it 'should return one Openstruct if passed an empty Array' do
-      test_sub = app.new!
-      results = test_sub.prepare_articles([])
+      results = test_subject.prepare_articles([])
       expect(results).to be_kind_of(Array)
       result = results.first
       expect(result).to be_kind_of(OpenStruct)
@@ -24,9 +26,8 @@ describe GuardianLowDataApp do
     end
 
     it 'should return the same collection if passed a no empty collection' do
-      test_sub = app.new!
       collection = [1,2,3]
-      results = test_sub.prepare_articles(collection)
+      results = test_subject.prepare_articles(collection)
       expect(results).to be == collection
     end
   end

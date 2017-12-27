@@ -61,7 +61,7 @@ class GuardianLowDataApp < Sinatra::Base
     @page = params[:page].to_i
     @query = session[:query] ? session[:query] : nil
     set_path
-    render_articles
+    render_articles(@query)
   end
 
   get '/article/*' do |id|
@@ -75,7 +75,7 @@ class GuardianLowDataApp < Sinatra::Base
     @page = 1
     session[:query] = params[:q].to_s
     @query = session[:query]
-    render_articles
+    render_articles(@query)
   end
 
   def prepare_articles(results)
@@ -83,8 +83,8 @@ class GuardianLowDataApp < Sinatra::Base
     results
   end
 
-  def render_articles
-    results = GuardianContent::Content.search(@query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
+def render_articles(query = nil)
+    results = GuardianContent::Content.search(query, order: 'newest', limit: 200, select: { fields: :all } ).paginate(:page => @page, :per_page => 10)
     haml :home, locals: {:results => prepare_articles(results)}
   end
 
