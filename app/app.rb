@@ -11,7 +11,7 @@ class GuardianLowDataApp < Sinatra::Base
 
   set :haml, :format => :html5
   set :logging, true
-  set :server, %[puma]
+  set :server, %[thin]
   enable :sessions
   helpers Sinatra::GuardianLowDataApp::Helpers
 
