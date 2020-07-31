@@ -37,6 +37,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/graphql" do
+    binding.pry
     result = Schema.execute(
       params[:query],
       variables: params[:variables],
