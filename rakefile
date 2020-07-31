@@ -2,7 +2,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rspec/core/rake_task'
-require_relative './app/app'
+require_relative './config/app'
 
 Rake::TestTask.new :test do |task|
   task.pattern = "test/*_test.rb"
