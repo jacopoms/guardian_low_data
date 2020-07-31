@@ -1,5 +1,5 @@
 require_relative 'test_helper'
-require_relative '../app/app'
+require_relative '../config/app'
 
 class TestGuardianLowDataApp < Minitest::Test
   include Rack::Test::Methods

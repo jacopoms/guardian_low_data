@@ -31,5 +31,4 @@ describe GuardianLowDataApp do
       expect(results).to be == collection
     end
   end
-
 end
