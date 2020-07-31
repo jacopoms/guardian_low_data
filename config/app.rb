@@ -6,9 +6,9 @@ require 'will_paginate/view_helpers/sinatra'
 require 'will_paginate/array'
 require 'sprockets'
 require 'sass'
-
+require 'graphql'
 # pull in the helpers and controllers
-Dir.glob('./app/{helpers,controllers}/*.rb').each { |file| require file }
+Dir.glob('./app/**/*.rb').each { |file| require file }
 # :nodoc:
 
 class GuardianLowDataApp < ApplicationController

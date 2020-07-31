@@ -1,8 +1,11 @@
-#require_relative '../../config/app.rb'
+# frozen_string_literal: true
+require 'sinatra/json'
+require "rack/contrib"
+require_relative "../graphql/schema.rb"
 
 class ApplicationController < Sinatra::Base
 
-  set :views, File.expand_path('../views', __FILE__)
+  use Rack::PostBodyContentTypeParser
 
   get '/' do
     @page = 1
@@ -31,5 +34,15 @@ class ApplicationController < Sinatra::Base
     session[:query] = params[:q].to_s
     @query = session[:query]
     render_articles(@query)
+  end
+
+  post "/graphql" do
+    result = Schema.execute(
+      params[:query],
+      variables: params[:variables],
+      context: { current_user: nil },
+    )
+
+    json result
   end
 end
