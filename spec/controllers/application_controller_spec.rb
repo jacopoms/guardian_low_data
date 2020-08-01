@@ -2,7 +2,7 @@
 
 require_relative "../spec_helper.rb"
 
-describe ApplicationController, type: :controller do
+describe ApplicationController, type: :controller, vcr: true do
   let(:headers) do
     { "Content-Type" => "application/json" }
   end
@@ -25,8 +25,22 @@ describe ApplicationController, type: :controller do
       )
     end
 
+    let(:query) do
+      <<~GRAPHQL
+        {
+          article(id: $id') {
+            title
+          }
+        }
+      GRAPHQL
+    end
+
+    let(:variables) do
+      { id: "#{id}" }
+    end
+
     it "returns a json response" do
-      response = post "/graphql", query:}
+      response = post "/graphql", query:{}
       expect(response).to be_successful
     end
 
@@ -38,14 +52,9 @@ describe ApplicationController, type: :controller do
     end
 
     it "returns the expected result" do
-      response = post "/graphql", query: %(query {
-          article(id: id): {
-            title
-          }
-        }
-      ), headers: headers
-      binding.pry
-      expect(JSON.parse(response)["data"]["article"]["title"]).to eql title
+      response = post "/graphql", params: {query: query}, variables: variables, headers: headers
+      expect(JSON.parse(response.body)["data"]["article"]["title"]).to eql title
     end
   end
 end
+
