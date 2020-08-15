@@ -15,6 +15,11 @@ gem 'sinatra'
 gem 'thin'
 gem 'will_paginate', '~> 3.1.1'
 
+group :development do
+  gem 'solargraph'
+  gem 'rubocop'
+end
+
 group :test do
   gem 'minitest'
   gem 'rack-test'
