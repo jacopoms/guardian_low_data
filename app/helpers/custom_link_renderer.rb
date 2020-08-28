@@ -1,5 +1,5 @@
-require 'will_paginate'
-require 'will_paginate/view_helpers'
+require "will_paginate"
+require "will_paginate/view_helpers"
 
 class CustomLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
   def url(page)

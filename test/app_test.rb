@@ -1,5 +1,5 @@
-require_relative 'test_helper'
-require_relative '../config/app'
+require_relative "test_helper"
+require_relative "../config/app"
 
 class TestGuardianLowDataApp < Minitest::Test
   include Rack::Test::Methods
@@ -10,7 +10,7 @@ class TestGuardianLowDataApp < Minitest::Test
 
   def test_homepage
     VCR.use_cassette("test_homepage") do
-      get '/'
+      get "/"
       assert last_response.ok?
       assert_equal last_response.status, 200
       assert last_response.body.include?("class='article-title'")
@@ -19,7 +19,7 @@ class TestGuardianLowDataApp < Minitest::Test
 
   def test_secondpage
     VCR.use_cassette("test_secondpage") do
-      get '/page/2'
+      get "/page/2"
       assert last_response.ok?
       assert_equal last_response.status, 200
       assert last_response.body.include?("class='article-title'k")
@@ -28,7 +28,7 @@ class TestGuardianLowDataApp < Minitest::Test
 
   def test_lastpage
     VCR.use_cassette("test_lastpage") do
-      get '/page/20'
+      get "/page/20"
       assert last_response.ok?
       assert_equal last_response.status, 200
       assert last_response.body.include?("class='article-title'")
@@ -37,28 +37,26 @@ class TestGuardianLowDataApp < Minitest::Test
 
   def test_after_lastpage
     VCR.use_cassette("test_after_lastpage") do
-      get '/page/21'
+      get "/page/21"
       assert last_response.ok?
-      assert last_response.body.include?('No Articles')
+      assert last_response.body.include?("No Articles")
     end
   end
 
   def test_error
     VCR.use_cassette("test_error") do
-      begin
-        get '/page/-1'
-      rescue Exception => e
-        assert e.is_a?(StandardError)
-        assert e.is_a?(RangeError)
-      end
+      get "/page/-1"
+    rescue Exception => e
+      assert e.is_a?(StandardError)
+      assert e.is_a?(RangeError)
     end
   end
 
   def test_search
     VCR.use_cassette("test_asearch") do
-      post '/search', :q => "Firenze"
+      post "/search", q: "Firenze"
       assert last_response.ok?
-      assert last_response.body.include?('Firenze')
+      assert last_response.body.include?("Firenze")
     end
   end
 

@@ -1,6 +1,6 @@
-require 'rubygems'
-require 'bundler'
-require 'dotenv/load'
+require "rubygems"
+require "bundler"
+require "dotenv/load"
 Bundler.require
-require './config/app'
+require "./config/app"
 GuardianLowDataApp.run!
