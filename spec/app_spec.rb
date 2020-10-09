@@ -1,5 +1,4 @@
-# spec/app_spec.rb
-require_relative "spec_helper.rb"
+# frozen_string_literal: true
 
 describe GuardianLowDataApp do
   describe "/" do

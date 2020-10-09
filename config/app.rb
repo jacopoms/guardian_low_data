@@ -8,7 +8,7 @@ require "sprockets"
 require "sass"
 require "graphql"
 # pull in the helpers and controllers
-Dir.glob("./app/**/*.rb").each { |file| require file }
+Dir.glob("./app/**/*.rb").sort.each(&method(:require))
 # :nodoc:
 
 class GuardianLowDataApp < ApplicationController

@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 require "graphql"
-require_relative "types/article.rb"
+require_relative "queries/article.rb"
+require_relative "queries/articles.rb"
 
 class QueryRoot < GraphQL::Schema::Object
-  field :article, Types::Article, null: true do
-    description "Find an Article by its ID"
-    argument :id, String, required: true
+  graphql_name "QueryRoot"
+  description "The query root of the Schema."
+
+  field :articles, [Types::Article], resolver: Query::Articles, null: true do
+    description "List all the articles"
   end
 
-  def article(id:)
-    GuardianContent::Content.find_by_id(id)
-  end
+  field :article, Types::Article, resolver: Query::Article, null: true
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "custom_link_renderer"
 
 module Sinatra

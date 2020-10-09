@@ -22,6 +22,7 @@ gem "will_paginate", "~> 3.1.1"
 
 group :development do
   gem "rubocop", require: false
+  gem "solargraph"
 end
 
 group :test do
