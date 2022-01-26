@@ -16,7 +16,6 @@ module Sinatra
           limit: 200,
           select: { fields: :all }
         ).paginate(page: @page, per_page: 10)
-        p "articles = #{@articles}/n"
         haml :home, locals: { results: format_articles }
       end
 
@@ -29,7 +28,6 @@ module Sinatra
       attr_reader :articles
 
       def format_articles
-        p "@articles #{@articles}}/n"
         if @articles.empty?
           [OpenStruct.new(title: 'No Articles')]
         else

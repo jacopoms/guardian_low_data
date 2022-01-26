@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ApplicationController < Sinatra::Base
-  set :views, File.expand_path('../views', __FILE__)
+  set :views, File.expand_path('views', __dir__)
 
   get '/' do
     @page = 1
