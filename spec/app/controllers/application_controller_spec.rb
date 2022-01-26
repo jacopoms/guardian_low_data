@@ -5,13 +5,15 @@ describe ApplicationController, :vcr do
     before do
       get path
     end
-
-    context 'when get /' do
-      let(:path) { '/' }
-      it 'is successful' do
+    shared_examples 'is successful' do
+      it  do
         expect(last_response).to be_ok
         expect(last_response.status).to eq(200)
       end
+    end
+    context 'when get /' do
+      let(:path) { '/' }
+      it_behaves_like 'is successful'
 
       it 'renders the homepage as expected' do
         expect(last_response.body).to include("class='article-title'")
@@ -20,10 +22,8 @@ describe ApplicationController, :vcr do
 
     context 'when get /page/2' do
       let(:path) { '/page/2' }
-      it 'is successful' do
-        expect(last_response).to be_ok
-        expect(last_response.status).to eq(200)
-      end
+
+      it_behaves_like 'is successful'
 
       it 'renders the second page as expected' do
         expect(last_response.body).to include('')
@@ -32,16 +32,13 @@ describe ApplicationController, :vcr do
 
     context 'when get /page/21' do
       let(:path) { '/page/21' }
-      it 'is successful' do
-        expect(last_response).to be_ok
-        expect(last_response.status).to eq(200)
-      end
+
+      it_behaves_like 'is successful'
 
       it 'renders the page as expected' do
         expect(last_response.body).to include('No Articles')
       end
     end
-
   end
   context 'testing the unhappy path' do
     context 'when get /page/abc' do
@@ -52,11 +49,11 @@ describe ApplicationController, :vcr do
     end
   end
 
-  describe "Search" do
+  describe 'Search' do
     context 'when post /search?q=foobar' do
       let(:search_term) { 'foobar' }
-      it "is successfull" do
-        post '/search', :q => search_term
+      it 'is successful' do
+        post '/search', q: search_term
         expect(last_response.body).to include(search_term)
       end
     end
