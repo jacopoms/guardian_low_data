@@ -10,7 +10,6 @@ gem 'binding_of_caller'
 gem 'dotenv'
 gem 'guardian-content', github: 'Jackopo/contentapi-ruby'
 gem 'haml'
-gem 'pry-byebug'
 gem 'sinatra'
 gem 'thin'
 gem 'will_paginate', '~> 3.1.1'
@@ -18,6 +17,10 @@ gem 'will_paginate', '~> 3.1.1'
 group :development do
   gem 'irb'
   gem 'solargraph'
+end
+
+group :development, :test do
+  gem 'pry-byebug'
 end
 
 group :test do

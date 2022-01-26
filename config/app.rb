@@ -38,4 +38,3 @@ class GuardianLowDataApp < ApplicationController
     GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
   end
 end
-

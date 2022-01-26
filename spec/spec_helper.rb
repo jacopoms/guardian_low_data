@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/spec_helper.rb
 ENV['RACK_ENV'] = 'test'
 require 'dotenv/load'
@@ -15,11 +17,10 @@ end
 # For RSpec 2.x and 3.x
 RSpec.configure { |c| c.include RSpecMixin }
 
-#Setting up VCR
+# Setting up VCR
 VCR.configure do |c|
-  c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :webmock
   c.configure_rspec_metadata!
+  c.default_cassette_options = { record: :new_episodes }
 end
-
-
