@@ -5,4 +5,5 @@ require 'bundler'
 require 'dotenv/load'
 Bundler.require
 require './config/app'
-GuardianLowDataApp.run!
+use GuardianLowDataApp
+run lambda {|env| [404, {}, []]}

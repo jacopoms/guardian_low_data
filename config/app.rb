@@ -21,8 +21,7 @@ class GuardianLowDataApp < ApplicationController
   helpers Sinatra::GuardianLowDataApp::Helpers
 
   configure :development do
-    # set :bind, '0.0.0.0'
-    # set :port, 3001
+    set :bind, '0.0.0.0'
     use BetterErrors::Middleware
     BetterErrors.application_root = File.expand_path(__dir__)
   end
