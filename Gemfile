@@ -11,7 +11,8 @@ gem 'dotenv'
 gem 'guardian-content', github: 'Jackopo/contentapi-ruby'
 gem 'haml'
 gem 'sinatra'
-gem 'thin'
+# gem 'thin'
+gem 'falcon'
 gem 'will_paginate', '~> 3.1.1'
 
 group :development do

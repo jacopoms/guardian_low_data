@@ -13,7 +13,7 @@ class GuardianLowDataApp < ApplicationController
 
   set :haml, format: :html5
   set :logging, true
-  set :server, %(thin)
+  set :server, %(falcon)
   set :views, File.expand_path('../app/views', __dir__)
   set :public_folder, 'public'
   enable :sessions
@@ -22,7 +22,6 @@ class GuardianLowDataApp < ApplicationController
 
   configure :development do
     set :bind, '0.0.0.0'
-    set :port, 3000
     use BetterErrors::Middleware
     BetterErrors.application_root = File.expand_path(__dir__)
   end
