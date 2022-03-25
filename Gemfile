@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '3.0.3'
+ruby "3.0.3"
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
@@ -11,10 +11,12 @@ gem 'dotenv'
 gem 'guardian-content', github: 'Jackopo/contentapi-ruby'
 gem 'haml'
 gem 'sinatra'
-gem 'thin'
 gem 'will_paginate', '~> 3.1.1'
 
+gem 'thin'
+
 group :development do
+
   gem 'irb'
   gem 'solargraph'
 end
