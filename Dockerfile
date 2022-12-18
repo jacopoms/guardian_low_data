@@ -1,15 +1,19 @@
-FROM ruby:2.6.3
+FROM ruby:3.0.3
 
-RUN mkdir /guardian-low-data
-WORKDIR /guardian-low-data
-COPY . /guardian-low-data
+RUN mkdir /app
+WORKDIR /app
+COPY . /app
 
 
-ENV LANG en_US.UTF-8
-ENV RACK_ENV development
-ENV PORT 3000
+ARG $LANG
+ARG $RACK_ENV
+ARG $PORT
+ENV LANG $LANG
+ENV RACK_ENV $RACK_ENV
+ENV PORT $PORT
 
-RUN gem install bundler -v 2.0.2
+
+RUN gem install bundler -v 2.2.32
 RUN bundle install
 
 CMD bundle exec thin -R config.ru start -p $PORT -e $RACK_ENV
