@@ -8,3 +8,6 @@
 ##ignore everything under features/vcr_cassettes
 **/fixtures/vcr_cassettes/*.yml
 fly.toml
+
+#ignore Procfile with docke
+**/Procfile
