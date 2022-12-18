@@ -16,4 +16,3 @@ ENV PORT $PORT
 RUN gem install bundler -v 2.2.32
 RUN bundle install
 
-CMD bundle exec thin -R config.ru start -p $PORT -e $RACK_ENV
