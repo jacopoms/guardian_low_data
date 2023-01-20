@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Main Controller of the application
+#
 class ApplicationController < Sinatra::Base
   set :views, File.expand_path('views', __dir__)
 

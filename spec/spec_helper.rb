@@ -12,7 +12,7 @@ require 'vcr'
 
 module RSpecMixin
   include Rack::Test::Methods
-  def app() = GuardianLowDataApp
+  def app = GuardianLowDataApp
 end
 # For RSpec 2.x and 3.x
 RSpec.configure { |c| c.include RSpecMixin }

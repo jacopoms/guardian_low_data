@@ -35,6 +35,6 @@ class GuardianLowDataApp < ApplicationController
   end
 
   before do
-    GuardianContent.new(ENV['GUARDIAN_CONTENT_API_KEY'])
+    GuardianContent.new(ENV.fetch('GUARDIAN_CONTENT_API_KEY', nil))
   end
 end

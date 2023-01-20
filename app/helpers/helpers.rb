@@ -11,13 +11,9 @@ module Sinatra
       end
 
       def render_articles(query = nil)
-        @articles ||= GuardianContent::Content.search(
-          query,
-          order: 'newest',
-          limit: 200,
-          select: { fields: :all }
-        ).paginate(page: @page, per_page: 10)
-        haml :home, locals: { results: format_articles }
+        search_articles(query)
+
+        haml :home, locals: { results: return_articles }
       end
 
       def set_path
@@ -26,14 +22,23 @@ module Sinatra
 
       private
 
+      EmptyResult = Struct.new(:title, :total_pages)
+
       attr_reader :articles
 
-      def format_articles
-        if @articles.empty?
-          [OpenStruct.new(title: 'No Articles')]
-        else
-          @articles
-        end
+      def search_articles(query)
+        @articles = GuardianContent::Content.search(
+          query,
+          order: 'newest',
+          limit: 200,
+          select: { fields: :all }
+        ).paginate(page: @page, per_page: 10)
+      end
+
+      def return_articles
+        return [EmptyResult.new(title: 'No Articles', total_pages: 0)] if @articles.empty?
+
+        @articles
       end
     end
   end

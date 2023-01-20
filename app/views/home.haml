@@ -16,5 +16,5 @@
               = DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M") \
               %a{href: "/article/#{article.id}" }
                 Read more
-  - unless results.first.is_a?(OpenStruct)
+  - unless results.first.is_a?(EmptyResult)
     = will_paginate results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
