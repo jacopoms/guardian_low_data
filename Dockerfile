@@ -1,4 +1,4 @@
-FROM ruby:3.0.3
+FROM ruby:3.2.0
 
 RUN mkdir /app
 WORKDIR /app
@@ -13,6 +13,6 @@ ENV RACK_ENV $RACK_ENV
 ENV PORT $PORT
 
 
-RUN gem install bundler -v 2.2.32
+RUN gem install bundler -v 2.4.4
 RUN bundle install
 
