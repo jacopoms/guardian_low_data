@@ -50,11 +50,11 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     multi_xml (0.6.0)
-    mustermann (2.0.2)
+    mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.13.10-x86_64-darwin)
+    nokogiri (1.14.0-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.14.0-x86_64-linux)
       racc (~> 1.4)
     parallel (1.20.1)
     parser (3.0.0.0)
@@ -67,9 +67,9 @@ GEM
       byebug (~> 11.0)
       pry (~> 0.13.0)
     public_suffix (4.0.6)
-    racc (1.6.1)
+    racc (1.6.2)
     rack (2.2.6.2)
-    rack-protection (2.2.3)
+    rack-protection (3.0.5)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -121,10 +121,10 @@ GEM
       syntax_tree (>= 5.0.0, < 6)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
-    sinatra (2.2.3)
-      mustermann (~> 2.0)
-      rack (~> 2.2)
-      rack-protection (= 2.2.3)
+    sinatra (3.0.5)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.5)
       tilt (~> 2.0)
     solargraph (0.40.3)
       backport (~> 1.1)
@@ -165,6 +165,7 @@ GEM
 PLATFORMS
   x86_64-darwin-20
   x86_64-darwin-21
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
@@ -192,7 +193,7 @@ DEPENDENCIES
   will_paginate (~> 3.1.1)
 
 RUBY VERSION
-   ruby 3.0.3p157
+   ruby 3.2.0p0
 
 BUNDLED WITH
-   2.2.32
+   2.4.4
