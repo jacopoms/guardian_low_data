@@ -2,3 +2,57 @@
 
 Style/Documentation:
   Enabled: false
+
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Metrics/BlockLength:
+  IgnoredMethods:
+    [
+      "describe",
+      "context",
+      "configure",
+      "init",
+      "start",
+      "before",
+      "xdescribe",
+      "shared_context",
+      "define",
+      "factory",
+      "boot",
+      "prepare",
+      "register_provider",
+      "params",
+      "settings",
+      "let"
+    ]
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/HashSyntax:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 100
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+   - spec/**/*
+
+RSpec/NestedGroups:
+  Enabled: false
+

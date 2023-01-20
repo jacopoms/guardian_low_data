@@ -16,12 +16,17 @@ gem 'will_paginate', '~> 3.1.1'
 
 group :development do
   gem 'irb'
-  gem 'ruby-lsp', require: false
+  gem 'rubocop'
   gem 'solargraph'
 end
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'reek'
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
+  gem 'ruby-lsp', require: false
+  gem 'solargraph-reek'
 end
 
 group :test do

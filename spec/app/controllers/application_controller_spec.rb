@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 describe ApplicationController, :vcr do
-  context 'testing the happy path' do
+  context 'when testing the happy path' do
     before do
       get path
     end
+
     shared_examples 'is successful' do
       it  do
-        expect(last_response).to be_ok
         expect(last_response.status).to eq(200)
       end
     end
     context 'when get /' do
       let(:path) { '/' }
+
       it_behaves_like 'is successful'
 
       it 'renders the homepage as expected' do
@@ -40,9 +41,11 @@ describe ApplicationController, :vcr do
       end
     end
   end
-  context 'testing the unhappy path' do
+
+  context 'when testing the unhappy path' do
     context 'when get /page/abc' do
       let(:path) { '/page/abc' }
+
       it 'throws the expected error' do
         expect { get path }.to raise_exception(RangeError)
       end
@@ -52,6 +55,7 @@ describe ApplicationController, :vcr do
   describe 'Search' do
     context 'when post /search?q=foobar' do
       let(:search_term) { 'foobar' }
+
       it 'is successful' do
         post '/search', q: search_term
         expect(last_response.body).to include(search_term)
