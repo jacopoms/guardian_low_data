@@ -8,7 +8,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'dotenv'
-gem 'guardian-content', github: 'Jackopo/contentapi-ruby'
+gem 'guardian-content', github: 'jacopoms/contentapi-ruby'
 gem 'haml'
 gem 'sinatra'
 gem 'thin'
