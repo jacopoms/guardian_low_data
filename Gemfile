@@ -16,6 +16,7 @@ gem 'will_paginate', '~> 3.1.1'
 
 group :development do
   gem 'irb'
+  gem 'ruby-lsp', require: false
   gem 'solargraph'
 end
 
