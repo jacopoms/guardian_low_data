@@ -18,7 +18,6 @@ class GuardianLowDataApp < ApplicationController
   set :public_folder, 'public'
   enable :sessions
 
-  helpers Sinatra::GuardianLowDataApp::Helpers
 
   configure :development do
     set :bind, '0.0.0.0'
