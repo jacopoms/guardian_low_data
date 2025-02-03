@@ -18,7 +18,6 @@ class GuardianLowDataApp < ApplicationController
   set :public_folder, 'public'
   enable :sessions
 
-
   configure :development do
     set :bind, '0.0.0.0'
     set :port, 3000
