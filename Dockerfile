@@ -12,4 +12,4 @@ ENV PORT $PORT
 RUN gem install bundler -v 2.4.4
 RUN bundle install
 
-CMD [ "RUBYOPT=--yjit bundle exec thin -R config.ru start -p $PORT -e $RACK_ENV" ]
+CMD ["bundle", "exec", "thin -R config.ru start -p $PORT -e $RACK_ENV", "RUBYOPT=--yjit"]
