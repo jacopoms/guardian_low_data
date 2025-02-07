@@ -27,6 +27,7 @@ class GuardianLowDataApp < ApplicationController
 
   configure :production, :test do
     set :show_exceptions, false
+    set :bind, '0.0.0.0'
     error do
       'Houston! We have a problem!!!'
     end
