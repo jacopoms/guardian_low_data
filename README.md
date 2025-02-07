@@ -1,9 +1,7 @@
 # Guardian Low Data App
 
-App running on Railway.app: https://web-production-61d7.up.railway.app/
-
+App running on Render.com: https://guardian-low-data.onrender.com/
 Guardian API Docs: http://open-platform.theguardian.com/documentation/
-
 
 ## Specs
 
