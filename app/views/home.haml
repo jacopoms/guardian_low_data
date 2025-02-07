@@ -1,21 +1,20 @@
-= haml :search
-
+!= haml :search
 %section.container
   %ul.articles
     - results.each do |article|
       %li
         %h3.article-title
-          = article.title
+          != article.title
         .article-date
           - if article.respond_to?(:publication_date)
             %p.publication_date
               Published at
-              = DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M")
+              != DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M")
         - if article.respond_to?(:fields)
           .article-body
             %p
-              = article.fields[:trailText]
+              != article.fields[:trailText]
             %a{href: "/article/#{article.id}" }
               Read more
   - unless results.first.is_a?(EmptyResult)
-    = will_paginate results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
+    != will_paginate results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
