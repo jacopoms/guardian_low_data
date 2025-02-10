@@ -5,11 +5,11 @@ WORKDIR /app
 COPY . /app
 
 ENV RUBY_YJIT_ENABLE=true
-ENV LANG $LANG
-ENV RACK_ENV $RACK_ENV
-ENV PORT $PORT
+# ENV LANG=$LANG
+# ENV RACK_ENV=$RACK_ENV
+EXPOSE $PORT
 
 RUN gem install bundler -v 2.4.4
 RUN bundle install
 
-CMD ["bundle", "exec", "thin", "-R config.ru",  "start",  "-p $PORT", "-e $RACK_ENV", "RUBYOPT=--yjit"]
+CMD ./docker-entrypoint.sh
