@@ -9,7 +9,7 @@ ENV RUBY_YJIT_ENABLE=1
 # ENV RACK_ENV=$RACK_ENV
 EXPOSE $PORT
 
-RUN gem install bundler -v 2.4.4
+RUN gem install bundler -v 2.6.5
 RUN bundle install
 
 CMD ./docker-entrypoint.sh
