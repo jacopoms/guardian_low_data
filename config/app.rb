@@ -20,7 +20,7 @@ class GuardianLowDataApp < ApplicationController
 
   configure :development do
     set :bind, '0.0.0.0'
-    set :port, ENV.fetch['PORT'] || 4000
+    set :port, ENV['PORT'] || 4000
     use BetterErrors::Middleware
     BetterErrors.application_root = File.expand_path(__dir__)
   end
