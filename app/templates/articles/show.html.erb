@@ -1,0 +1,18 @@
+<section class="container">
+  <div class="back-link">
+    <a href="<%= back_path %>">
+      Back
+    </a>
+  </div>
+
+  <article>
+    <header>
+      <h1 class="article-title">
+        <%= article.title %>
+      </h1>
+    </header>
+    <section class="article-body">
+      <%= article.fields[:body] %>
+    </section>
+  </article>
+</section>

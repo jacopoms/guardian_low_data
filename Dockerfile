@@ -12,4 +12,7 @@ EXPOSE $PORT
 RUN gem install bundler -v 2.6.5
 RUN bundle install
 
+# Precompile assets and build the application
+RUN bundle exec hanami assets precompile
+
 CMD ./docker-entrypoint.sh

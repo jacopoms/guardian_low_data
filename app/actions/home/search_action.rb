@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+module GuardianLowData
+  module Actions
+    module Home
+      class Search < Hanami::Action
+        include Deps[guardian_service: "services.guardian_service"]
+
+        def handle(request, response)
+          query = request.params[:q]
+          page = 1
+
+          request.session[:query] = query
+          articles = guardian_service.search_articles(query, page)
+
+          response.render(view, articles: articles, page: page, query: query)
+        end
+      end
+    end
+  end
+end

@@ -5,14 +5,20 @@ ruby '3.4.2'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem 'better_errors'
-gem 'binding_of_caller'
-gem 'dotenv'
+gem 'hanami', '~> 2.2'
+gem 'hanami-router', '~> 2.2'
+gem 'hanami-controller', '~> 2.2'
+gem 'hanami-view', '~> 2.2'
+gem 'hanami-validations', '~> 2.2'
+gem 'hanami-utils', '~> 2.2'
+gem 'hanami-cli', '~> 2.2'
+gem 'hanami-rspec', '~> 2.2'
+gem 'hanami-webconsole', '~> 2.2', group: :development
+
 gem 'guardian-content', github: 'jacopoms/contentapi-ruby'
-gem 'haml'
-gem 'sinatra'
-gem 'thin'
 gem 'will_paginate', '~> 3.1.1'
+gem 'dotenv'
+gem 'puma'
 
 group :development do
   gem 'irb'

@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
-require 'will_paginate'
-require 'will_paginate/view_helpers'
+# Temporarily commented out to get the application running
+# require 'will_paginate'
+# require 'will_paginate/view_helpers'
 
-class CustomLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
-  def url(page)
-    "/page/#{page}"
-  end
-end
+# module GuardianLowData
+#   module Helpers
+#     class CustomLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
+#       def url(page)
+#         "/page/#{page}"
+#       end
+#     end
+#   end
+# end

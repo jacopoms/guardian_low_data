@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'rubygems'
-require 'bundler'
-require 'dotenv/load'
-Bundler.require
-require './config/app'
-GuardianLowDataApp.run!
+require_relative "config/environment"
+
+run GuardianLowData::Application.new

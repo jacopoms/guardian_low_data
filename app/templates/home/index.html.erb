@@ -1,0 +1,36 @@
+<%= render "search" %>
+
+<section class="container">
+  <ul class="articles">
+    <% articles.each do |article| %>
+      <li>
+        <h3 class="article-title">
+          <%= article.title %>
+        </h3>
+        <div class="article-date">
+          <% if article.respond_to?(:publication_date) %>
+            <p class="publication_date">
+              Published at
+              <%= DateTime.parse(article.publication_date.to_s).strftime("%d %b %Y - %H:%M") %>
+            </p>
+          <% end %>
+        </div>
+        <% if article.respond_to?(:fields) %>
+          <div class="article-body">
+            <p>
+              <%= article.fields[:trailText] %>
+            </p>
+            <a href="/article/<%= article.id %>">
+              Read more
+            </a>
+          </div>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%# Temporarily commented out pagination %>
+  <%# unless articles.first.is_a?(EmptyResult) %>
+  <%#   <%= will_paginate articles, renderer: CustomLinkRenderer, previous_label: '&laquo;', next_label: '&raquo;' %>
+  <%# end %>
+</section>
