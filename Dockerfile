@@ -12,4 +12,7 @@ EXPOSE $PORT
 RUN gem install bundler -v 4.0.3
 RUN bundle install
 
-CMD ./docker-entrypoint.sh
+# Create cache directories for Rack::Cache
+RUN mkdir -p tmp/cache/rack/meta tmp/cache/rack/body
+
+CMD ["./docker-entrypoint.sh"]

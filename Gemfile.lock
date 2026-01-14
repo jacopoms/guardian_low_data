@@ -111,6 +111,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.3)
+    rack-cache (1.17.0)
+      rack (>= 0.4)
     rack-protection (4.2.0)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
@@ -224,6 +226,7 @@ DEPENDENCIES
   ostruct
   pry-byebug
   puma (~> 7.1)
+  rack-cache
   rack-test
   rackup (~> 2.3)
   rake
