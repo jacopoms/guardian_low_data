@@ -6,7 +6,7 @@ describe ApplicationController, { type: :request, vcr: true } do
     # rubocop:disable RSpec/MultipleExpectations
     it 'does not change once set' do
       get '/'
-      expect(last_response.body).to include("<input name='q' type='search'>")
+      expect(last_response.body).to include("<input name='q' type='search' value=''>")
       post 'search', q: 'foobar'
       expect(last_response.body).to include("<input name='q' type='search' value='foobar'>")
       get '/page/5'

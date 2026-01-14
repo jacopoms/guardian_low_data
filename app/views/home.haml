@@ -17,4 +17,7 @@
             %a{href: "/article/#{article.id}" }
               Read more
   - unless results.first.is_a?(EmptyResult)
-    != will_paginate results, renderer: CustomLinkRenderer, previous_label:  '&laquo;', next_label: '&raquo;'
+    != will_paginate results,
+        renderer: CustomLinkRenderer,
+        previous_label: '&laquo;',
+        next_label: '&raquo;'

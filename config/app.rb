@@ -20,6 +20,8 @@ class GuardianLowDataApp < ApplicationController
 
   configure :development do
     set :bind, '0.0.0.0'
+    # Ruby 4.0.0: Logical operator line continuation feature allows
+    # operators at line start to continue previous line
     set :port, ENV['PORT'] || 4000
     use BetterErrors::Middleware
     BetterErrors.application_root = File.expand_path(__dir__)

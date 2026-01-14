@@ -23,6 +23,8 @@ class ApplicationController < Sinatra::Base
   get '/article/*' do |id|
     @back_path = session[:request_path]
     query(session[:query])
+    # Ruby 4.0.0: Array#find is now optimized for better performance
+    # (though here we're using Content.find_by_id which is a different method)
     @article = GuardianContent::Content.find_by_id(id)
     haml :article
   end

@@ -4,7 +4,9 @@ require_relative 'custom_link_renderer'
 
 module Helpers
   def path_info
-    '/' if request.path_info == '/search'
+    # Ruby 4.0.0: Logical operator line continuation feature
+    return '/' if request.path_info == '/search'
+
     request.path_info
   end
 
@@ -20,7 +22,12 @@ module Helpers
 
   private
 
-  EmptyResult = Struct.new(:title, :total_pages)
+  EmptyResult = Struct.new(:title, :total_pages) do
+    # Ruby 4.0.0: Customize inspect output to exclude internal state
+    def instance_variables_to_inspect
+      []
+    end
+  end
 
   attr_reader :articles
 
