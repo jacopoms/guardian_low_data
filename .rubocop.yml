@@ -1,0 +1,19 @@
+inherit_from: .rubocop_todo.yml
+
+plugins:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 4.0
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - '.bundle/**/*'
+    - '.ruby-lsp/**/*'
+    - 'coverage/**/*'
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'spec/fixtures/vcr_cassettes/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
