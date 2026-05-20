@@ -1,4 +1,4 @@
-FROM ruby:4.0.0
+FROM ruby:4.0.4
 
 RUN mkdir /app
 WORKDIR /app
@@ -9,7 +9,7 @@ ENV RUBY_YJIT_ENABLE=1
 # ENV RACK_ENV=$RACK_ENV
 EXPOSE $PORT
 
-RUN gem install bundler -v 4.0.3
+RUN gem install bundler -v 4.0.10
 RUN bundle install
 
 # Create cache directories for Rack::Cache

@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 describe ApplicationController, :vcr do
   context 'when testing the happy path' do
     before do
       get path
     end
+    # rubocop:enable Metrics/BlockLength
 
     shared_examples 'is successful' do
       it  do
@@ -17,7 +19,7 @@ describe ApplicationController, :vcr do
       it_behaves_like 'is successful'
 
       it 'renders the homepage as expected' do
-        expect(last_response.body).to include("class='article-title'")
+        expect(last_response.body).to match(/class=(['"])article-title\1/)
       end
     end
 
