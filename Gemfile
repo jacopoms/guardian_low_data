@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '4.0.0'
+ruby '4.0.4'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem 'better_errors'
 gem 'binding_of_caller'
-gem 'cgi', '>= 0.5.0' # Required for Ruby 4.0.0 compatibility (CGI.parse)
+gem 'cgi', '>= 0.5.0' # Required for Ruby 4.0.4 compatibility (CGI.parse)
 gem 'dotenv'
-gem 'stringio', '>= 3.2.0' # Required for Ruby 4.0.0 compatibility
 gem 'guardian-content', github: 'jacopoms/contentapi-ruby'
 gem 'haml'
 gem 'ostruct'
@@ -17,6 +16,7 @@ gem 'puma', '~> 7.1'
 gem 'rack-cache'
 gem 'rackup', '~> 2.3'
 gem 'sinatra'
+gem 'stringio', '>= 3.2.0' # Required for Ruby 4.0.4 compatibility
 gem 'thin'
 gem 'will_paginate', '~> 3.1.1'
 

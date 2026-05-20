@@ -2,17 +2,13 @@
 
 describe ApplicationController, { type: :request, vcr: true } do
   describe '@query' do
-    # rubocop:disable RSpec/ExampleLength
-    # rubocop:disable RSpec/MultipleExpectations
     it 'does not change once set' do
       get '/'
-      expect(last_response.body).to include("<input name='q' type='search' value=''>")
+      expect(last_response.body).to match(/<input name=(['"])q\1 type=(['"])search\2 value=(['"])\3>/)
       post 'search', q: 'foobar'
-      expect(last_response.body).to include("<input name='q' type='search' value='foobar'>")
+      expect(last_response.body).to match(/<input name=(['"])q\1 type=(['"])search\2 value=(['"])foobar\3>/)
       get '/page/5'
-      expect(last_response.body).to include("<input name='q' type='search' value='foobar'>")
+      expect(last_response.body).to match(/<input name=(['"])q\1 type=(['"])search\2 value=(['"])foobar\3>/)
     end
-    # rubocop:enable RSpec/ExampleLength
-    # rubocop:enable RSpec/MultipleExpectations
   end
 end
