@@ -11,3 +11,19 @@ fly.toml
 
 #ignore Procfile with docke
 **/Procfile
+
+# Git and local tooling
+.git
+.gitignore
+.github
+.bundle
+
+# Local/cache/runtime artifacts
+tmp
+log
+coverage
+
+# Dev/test/documentation files not needed at runtime
+spec
+README.md
+RUBY_4_UPGRADE.md

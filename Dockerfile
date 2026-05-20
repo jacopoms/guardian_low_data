@@ -1,18 +1,44 @@
-FROM ruby:4.0.4
+# syntax=docker/dockerfile:1.7
 
-RUN mkdir /app
-WORKDIR /app
-COPY . /app
+FROM ruby:4.0.4-alpine AS base
 
-ENV RUBY_YJIT_ENABLE=1
-# ENV LANG=$LANG
-# ENV RACK_ENV=$RACK_ENV
-EXPOSE $PORT
+ENV APP_HOME=/app \
+    BUNDLE_DEPLOYMENT=1 \
+    BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_WITHOUT=development:test \
+    PORT=10000 \
+    RACK_ENV=production \
+    RUBY_YJIT_ENABLE=1
 
-RUN gem install bundler -v 4.0.10
-RUN bundle install
+WORKDIR ${APP_HOME}
 
-# Create cache directories for Rack::Cache
-RUN mkdir -p tmp/cache/rack/meta tmp/cache/rack/body
+FROM base AS build
+
+# Build-only packages for native gem extensions and git-sourced gems.
+RUN apk add --no-cache build-base git
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle install \
+ && rm -rf /usr/local/bundle/cache/*.gem /usr/local/bundle/ruby/*/cache
+
+COPY . .
+RUN mkdir -p tmp/cache/rack/meta tmp/cache/rack/body \
+ && chmod +x docker-entrypoint.sh
+
+FROM base AS runtime
+
+# Runtime libraries for native extensions (thin/eventmachine and dependencies).
+RUN apk add --no-cache libgcc libstdc++
+
+RUN addgroup -S app && adduser -S -G app app
+
+COPY --from=build /usr/local/bundle /usr/local/bundle
+COPY --from=build /app /app
+
+RUN chown -R app:app /app
+
+USER app
+
+EXPOSE 10000
 
 CMD ["./docker-entrypoint.sh"]
