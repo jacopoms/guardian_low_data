@@ -15,7 +15,8 @@ class GuardianLowDataApp < ApplicationController
   set :logging, true
   set :server, %(thin)
   set :views, File.expand_path('../app/views', __dir__)
-  set :public_folder, 'public'
+  set :public_folder, File.expand_path('../public', __dir__)
+  mime_type :webmanifest, 'application/manifest+json'
   enable :sessions
 
   configure :development do

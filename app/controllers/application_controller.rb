@@ -35,8 +35,17 @@ class ApplicationController < Sinatra::Base
     haml :article
   end
 
+  get '/search' do
+    cache_control :public, max_age: CACHE_TTL
+    query(params[:q])
+    set_path
+    render_articles(@query)
+  end
+
   post '/search' do
     # POST requests are not cached
+    # Kept for backward compatibility; GET /search is preferred
+    # so searches are shareable and cacheable by the service worker.
     query(params[:q])
     render_articles(@query)
   end
