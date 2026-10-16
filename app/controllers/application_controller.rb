@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
     cache_control :public, max_age: CACHE_TTL
     @back_path = session[:request_path]
     query(session[:query])
-    # Ruby 4.0.0: Array#find is now optimized for better performance
+    # Ruby 4.0.4: Array#find is now optimized for better performance
     # (though here we're using Content.find_by_id which is a different method)
     @article = GuardianContent::Content.find_by_id(id)
     haml :article

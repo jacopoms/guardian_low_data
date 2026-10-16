@@ -7,8 +7,7 @@ require 'will_paginate/view_helpers/sinatra'
 require 'will_paginate/array'
 # pull in the helpers and controllers
 Dir.glob('./app/{helpers,controllers}/*.rb').each { |file| require file }
-# :nodoc:
-
+# Sinatra application wiring and environment-specific configuration.
 class GuardianLowDataApp < ApplicationController
   register WillPaginate::Sinatra
 
@@ -21,7 +20,7 @@ class GuardianLowDataApp < ApplicationController
 
   configure :development do
     set :bind, '0.0.0.0'
-    # Ruby 4.0.0: Logical operator line continuation feature allows
+    # Ruby 4.0.4: Logical operator line continuation feature allows
     # operators at line start to continue previous line
     set :port, ENV['PORT'] || 4000
     use BetterErrors::Middleware
